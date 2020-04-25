@@ -3,6 +3,44 @@ from enchant.checker import SpellChecker
 import os
 import enchant
 import sys
+from PySide2.QtWidgets import QApplication
+from PySide2.QtWidgets import QGridLayout
+from PySide2.QtWidgets import QPushButton
+from PySide2.QtWidgets import QWidget
+from PySide2.QtWidgets import QLineEdit
+from PySide2.QtWidgets import QLabel
+from PySide2.QtWidgets import QScrollArea
+from PySide2.QtWidgets import QFileDialog
+from PySide2.QtCore import Slot, Qt
+
+class TypoWidget(QWidget):
+    def __init__(self):
+        QWidget.__init__(self)
+        self.setWindowTitle("Typo Parser")
+        self.layout = QGridLayout(self)
+        self.text = QLabel("test")
+        self.clear = QPushButton("Clear")
+        self.save = QPushButton("Save")
+        self.run = QPushButton("Run")
+
+        self.layout.addWidget(QLineEdit(), 0, 1, 1, 3)
+        self.layout.addWidget(QLabel("URL:"), 0,0)
+        self.layout.addWidget(QLineEdit(), 1, 1,)
+        self.layout.addWidget(QLabel("Username:"), 1,0)
+        self.layout.addWidget(QLineEdit(), 1, 3,)
+        self.layout.addWidget(QLabel("Password:"), 1,2)
+        self.layout.addWidget(self.run,2,0)
+        self.layout.addWidget(self.save,2,1,1,1)
+        self.layout.addWidget(self.clear,2,2)
+
+        self.scrollArea = QScrollArea()
+        self.scrollArea.setWidget(self.text)
+        self.layout.addWidget(self.scrollArea,3,0,4,4)
+
+        self.clear.clicked.connect(self.cleartext)
+        self.save.clicked.connect(self.savefile)
+        self.run.clicked.connect(self.parse)
+
 
 ###### THIS PROGRAM IS DESIGNED TO RUN ON UNIX AND UNIX-LIKE SYSTEMS WITH PYTHON 2 ######
 #For those who want further details, Python 3 is very poor for processing information from the
@@ -39,7 +77,7 @@ lang = SpellChecker("en_US") #Selects dictionary for a language
 spell_errors = 0 #Used for counting number of spelling errors indicated by the program
 #evaluate = False
 part = 0 #Used for tracking examples only
-report = open("typos.txt","w+") #Creates a .txt file containing the typos
+#report = open("typos.txt","w+") #Creates a .txt file containing the typos
 section =  0 #Used for tracking parts of a lecture  
 period = 1 #This is going to be used globally for counting periods.
 ques = 1 #Used for identifying questions in exercises
@@ -58,8 +96,8 @@ class MyHTMLParser(HTMLParser): #THIS ONLY WORKS IN PYTHON 2
             if len(dictionary.suggest(misspell.word)) > 0: #This is a way of removing gibberish    
                 print("Misspelled: "+str(misspell.word)) #For displaying errors to terminal
                 print("Suggestions: "+str(dictionary.suggest(misspell.word))+"\n")
-                report.write("Misspelled: "+str(misspell.word)+"\n") #For displaying errors to text file
-                report.write("Suggestions: "+str(dictionary.suggest(misspell.word))+"\n\n")
+                #report.write("Misspelled: "+str(misspell.word)+"\n") #For displaying errors to text file
+                #report.write("Suggestions: "+str(dictionary.suggest(misspell.word))+"\n\n")
                 spell_errors += 1
         if "." in data and data.isdigit() == False: #General case for a word with a period at the end or enumeration
             if len(data) > 2: #Used in case of individual letter listing
@@ -100,7 +138,7 @@ for tuples in os.walk(path): #Identifies potential typos
     for contents in tuples[2]: #This loop iterates over every single file in a directory, add functions below
         if "xht" in contents[-6:]:# or "htm" in contents[-6:]: #Controls type of files read (HTML and its derivatives only), comment this out to go crazy
             print("########## "+path+tuples[0].replace(path,"")+"/"+str(contents)+" ##########\n") #Provides a header for each section
-            report.write("########## "+path+tuples[0].replace(path,"")+"/"+str(contents)+" ##########\n") #Provides a header file
+            #report.write("########## "+path+tuples[0].replace(path,"")+"/"+str(contents)+" ##########\n") #Provides a header file
             f = open(tuples[0]+"/"+contents,"r")
             info = f.read()
             parser.feed(info)
@@ -114,6 +152,60 @@ for tuples in os.walk(path): #Identifies potential typos
 print("\nThere are currently %d non-native items in the dictionary." % (len(new_words)))
 #This section is reserved for printing the number of errors by type
 print("\n%d spelling errors detected.\n" % (spell_errors))
-report.write("\n%d spelling errors detected." % (spell_errors))
+#report.write("\n%d spelling errors detected." % (spell_errors))
 
-report.close() #Writing to file is complete
+#report.close() #Writing to file is complete
+
+class TypoWidget(QWidget):
+    def __init__(self):
+        QWidget.__init__(self)
+        self.setWindowTitle("Typo Parser")
+        self.layout = QGridLayout(self)
+        self.text = QLabel("test")
+        self.clear = QPushButton("Clear")
+        self.save = QPushButton("Save")
+        self.run = QPushButton("Run")
+
+        self.layout.addWidget(QLineEdit(), 0, 1, 1, 3)
+        self.layout.addWidget(QLabel("URL:"), 0,0)
+        self.layout.addWidget(QLineEdit(), 1, 1,)
+        self.layout.addWidget(QLabel("Username:"), 1,0)
+        self.layout.addWidget(QLineEdit(), 1, 3,)
+        self.layout.addWidget(QLabel("Password:"), 1,2)
+        self.layout.addWidget(self.run,2,0)
+        self.layout.addWidget(self.save,2,1,1,1)
+        self.layout.addWidget(self.clear,2,2)
+
+        self.scrollArea = QScrollArea()
+        self.scrollArea.setWidget(self.text)
+        self.layout.addWidget(self.scrollArea,3,0,4,4)
+
+        self.clear.clicked.connect(self.cleartext)
+        self.save.clicked.connect(self.savefile)
+        self.run.clicked.connect(self.parse)
+
+    @Slot()
+    def savefile(self):
+        filename, filter = QFileDialog.getSaveFileName(parent=self, caption='Open file', dir='.', filter='Text files (*.txt)')
+
+        if filename:
+            self.inputFileLineEdit.setText(filename)
+
+    @Slot()
+    def cleartext(self):
+        self.text.clear()
+
+    @Slot()
+    def parse(self):
+        self.text.setText("poooooooooooooop")
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+
+    widget = TypoWidget()
+    widget.resize(800, 600)
+    widget.show()
+
+    sys.exit(app.exec_())
+
