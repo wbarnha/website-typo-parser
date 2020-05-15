@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+"http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<head>
+<!-- The next lines of text are copied from the file htmlout.cfg, and can be modified there -->
+<style type="text/css">
+.displayed {text-align: center}
+.displayed { display: block !
+important}
+span.leadin {float: left}
+span.vspace {vertical-align: top}
+span.rule {display: inline; background-color: black}
+span.inline-math-graphics {white-space: nowrap}
+hr.pagebreak {color: green}
+table {border-collapse: collapse; border-color: black}
+table td {border-color: black}
+.inlineTable {display: inline}
+</style>
+<!-- End of lines from htmlout.cfg -->
+
+<link href="L22X.css" rel="stylesheet" type="text/css"/>
+</head>
+
+
+
+<body><p class="center"><span class="QQQSansSerif16">INSTRUCTIONS FOR USE OF DFE (DIRECTION FIELD EULER) </span> </p><p><br/></p><ul><li><p>Enter the right sides <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>f</mml:mi>
+       <mml:mo>&ApplyFunction;</mml:mo>
+       <mml:mrow>
+         <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+         <mml:mrow>
+           <mml:mi>x</mml:mi>
+           <mml:mo form="infix">,</mml:mo>
+           <mml:mi>y</mml:mi>
+         </mml:mrow>
+         <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:math> and <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>g</mml:mi>
+       <mml:mo>&ApplyFunction;</mml:mo>
+       <mml:mrow>
+         <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+         <mml:mrow>
+           <mml:mi>x</mml:mi>
+           <mml:mo form="infix">,</mml:mo>
+           <mml:mi>y</mml:mi>
+         </mml:mrow>
+         <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:math>. </p></li><li><p>Enter the <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>x</mml:mi>
+     </mml:mrow>
+   </mml:math>-window parameters (<span class="QQQSansSerif16">xMin</span> &amp; <span class="QQQSansSerif16">xMax</span>) and the <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>y</mml:mi>
+     </mml:mrow>
+   </mml:math>-window parameters (<span class="QQQSansSerif16">yMin</span> &amp; <span class="QQQSansSerif16">yMax</span>). </p></li><li><p>The <span class="QQQSansSerifBold16">Number of directions arrows</span> may be left at 17 or changed to suit you. Set the <span class="QQQSansSerifBold16">Number of directions arrows</span> = 1 to eliminate all such arrows. <strong>Warning</strong>: this number must be a positive integer. </p></li><li><p>The equilibrium points in the window are automatically displayed as red dots. </p></li><li><p>The Aspect Ratio may be varied to compress the vertical size of the <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>x</mml:mi>
+       <mml:mo>&InvisibleTimes;</mml:mo>
+       <mml:mi>y</mml:mi>
+     </mml:mrow>
+   </mml:math>-window </p></li><li><p>At <span class="QQQSansSerif16">Keyboard Entry</span> enter the initial values <mml:math display="inline">
+     <mml:mrow>
+       <mml:msub>
+         <mml:mi>x</mml:mi>
+         <mml:mn>0</mml:mn>
+       </mml:msub>
+     </mml:mrow>
+   </mml:math> and <mml:math display="inline">
+     <mml:mrow>
+       <mml:msub>
+         <mml:mi>y</mml:mi>
+         <mml:mn>0</mml:mn>
+       </mml:msub>
+     </mml:mrow>
+   </mml:math>, the final time <mml:math display="inline">
+     <mml:mrow>
+       <mml:msub>
+         <mml:mi>t</mml:mi>
+         <mml:mi>f</mml:mi>
+       </mml:msub>
+     </mml:mrow>
+   </mml:math> of the time domain <mml:math display="inline">
+     <mml:mrow>
+       <mml:mrow>
+         <mml:mo form="prefix" fence="true" stretchy="false">[</mml:mo>
+         <mml:mrow>
+           <mml:mn>0</mml:mn>
+           <mml:mo form="infix">,</mml:mo>
+           <mml:msub>
+             <mml:mi>t</mml:mi>
+             <mml:mi>f</mml:mi>
+           </mml:msub>
+         </mml:mrow>
+         <mml:mo form="postfix" fence="true" stretchy="false">]</mml:mo>
+       </mml:mrow>
+       <mml:mtext>,</mml:mtext>
+     </mml:mrow>
+   </mml:math> and the step size <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>h</mml:mi>
+       <mml:mtext>.</mml:mtext>
+     </mml:mrow>
+   </mml:math> [Be sure that <mml:math display="inline">
+     <mml:mrow>
+       <mml:msub>
+         <mml:mi>t</mml:mi>
+         <mml:mi>f</mml:mi>
+       </mml:msub>
+       <mml:mo form="infix">></mml:mo>
+       <mml:mn>0</mml:mn>
+     </mml:mrow>
+   </mml:math> and <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>h</mml:mi>
+       <mml:mo form="infix">></mml:mo>
+       <mml:mn>0.</mml:mn>
+     </mml:mrow>
+   </mml:math>] </p></li><li><p>Click on Add solution through <mml:math display="inline">
+     <mml:mrow>
+       <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+       <mml:mrow>
+         <mml:msub>
+           <mml:mi>t</mml:mi>
+           <mml:mn>0</mml:mn>
+         </mml:msub>
+         <mml:mo form="infix">,</mml:mo>
+         <mml:msub>
+           <mml:mi>x</mml:mi>
+           <mml:mn>0</mml:mn>
+         </mml:msub>
+       </mml:mrow>
+       <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+     </mml:mrow>
+   </mml:math>. </p></li><li><p>A black dot will appear at the point <mml:math display="inline">
+     <mml:mrow>
+       <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+       <mml:mrow>
+         <mml:msub>
+           <mml:mi>t</mml:mi>
+           <mml:mn>0</mml:mn>
+         </mml:msub>
+         <mml:mo form="infix">,</mml:mo>
+         <mml:msub>
+           <mml:mi>x</mml:mi>
+           <mml:mn>0</mml:mn>
+         </mml:msub>
+       </mml:mrow>
+       <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+     </mml:mrow>
+   </mml:math> and the corresponding Euler approximation will appear momentarily.</p></li></ul>
+
+</body>
+</html>

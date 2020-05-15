@@ -1,0 +1,462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/ODEwebTemplate_AMS.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>ODEweb</title>
+<style type="text/css">
+.style42 {font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #FF0000;
+	text-decoration: none;
+}
+.style431 {color: #000000; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style431 {color: #000000; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style461 {color: #0000; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style461 {color: #0000; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style471 {font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: capitalize;
+	color: #FFCC33;
+}
+.style471 {color: #006600;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 24px;
+}
+.style471 {font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: capitalize;
+	color: #FFCC33;
+}
+.style471 {color: #006600;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 24px;
+}
+</style>
+<!-- InstanceEndEditable -->
+<style type="text/css">
+<!--
+@import url("Navigator.css");
+.style1 {font-family: Geneva, Arial, Helvetica, sans-serif}
+.style8 {color: #006633; font-family: Arial, Helvetica, sans-serif; }
+body,td,th {
+	color: #333333;
+}
+a:link {
+	text-decoration: underline;
+}
+a:visited {
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+	color: #F00;
+}
+a:active {
+	text-decoration: underline;
+}
+.header {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: capitalize;
+	color: #FFFF00;
+}
+.style16 {color: #006633; font-family: Arial, Helvetica, sans-serif; font-style: italic; }
+.style18 {
+	font-size: 16px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.style23 {font-style: italic; font-family: Arial, Helvetica, sans-serif; color: #FFFF00;}
+#Layer1 {
+	position:absolute;
+	left:213px;
+	top:278px;
+	width:780px;
+	height:1750px;
+	z-index:1;
+	visibility: visible;
+}
+#Layer2 {
+	position:absolute;
+	left:150px;
+	top:340px;
+	width:0px;
+	height:10px;
+	z-index:2;
+	visibility: visible;
+}
+#Layer3 {
+	position: absolute;
+	left: 10px;
+	top: 278px;
+	width: 186px;
+	height: 263px;
+	z-index: 3;
+	visibility: visible;
+}
+#Layer4 {
+	position:absolute;
+	left:200px;
+	top:278px;
+	width:800px;
+	height:650px;
+	z-index:4;
+	visibility: visible;
+}
+#Layer5 {
+	position:absolute;
+	left:0px;
+	top:650px;
+	width:990px;
+	height:1px;
+	z-index:5;
+	visibility: visible;
+}
+#Layer6 {
+	position:absolute;
+	left:152px;
+	top:700px;
+	width:702px;
+	height:300px;
+	z-index:6;
+}
+.style30 {font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: capitalize; color: #FFFF00; }
+.style31 {font-style: italic; font-family: Arial, Helvetica, sans-serif; color: #FFFF00; font-size: 14px; }
+.style32 {font-family: Arial, Helvetica, sans-serif}
+.style33 {font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
+#Layer7 {
+	position:absolute;
+	width:284px;
+	height:320px;
+	z-index:4;
+	left: 346px;
+	top: 279px;
+	visibility: visible;
+}
+#Layer8 {
+	position:absolute;
+	width:373px;
+	height:50px;
+	z-index:5;
+	left: 308px;
+	top: 688px;
+}
+.style43 {color: #000000; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style46 {color: #0000; font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+.style47 {font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: capitalize;
+	color: #FFCC33;
+}
+.style47 {color: #006600;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 24px;
+}
+.style38 {font-size: 24px;
+	color: #006633;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	line-height: normal;
+	font-variant: normal;
+	text-transform: capitalize;
+}
+.style381 {font-size: 24px;
+	color: #006633;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	line-height: normal;
+	font-variant: normal;
+	text-transform: capitalize;
+}
+.style381 {font-size: 24px;
+	color: #006633;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	line-height: normal;
+	font-variant: normal;
+	text-transform: capitalize;
+}
+-->
+</style>
+<!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable -->
+<script type="text/JavaScript">
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+</script>
+<!-- InstanceParam name="OptionalRegion1" type="boolean" value="true" --><!-- InstanceParam name="OptionalRegion2" type="boolean" value="true" --><!-- InstanceParam name="OptionalRegion3" type="boolean" value="true" --><!-- InstanceParam name="OptionalRegion4" type="boolean" value="true" --><!-- InstanceParam name="id" type="text" value="Layer7" -->
+</head>
+
+<body>
+<div id="Layer1"><!-- InstanceBeginEditable name="EditRegion1" -->
+  <table width="781" border="1" cellpadding="1" cellspacing="0">
+    <tr>
+      <th height="44" colspan="3" align="center" bgcolor="#FFFF00" scope="col"><span class="style471">LECTURES</span></th>
+    </tr>
+    <tr>
+      <th width="42" height="33" align="center" class="style461" scope="col">Lec #</th>
+      <th colspan="2" align="center" class="style431" scope="col">Topic<span class="style461"></span></th>
+    </tr>
+    <tr>
+      <th height="27" scope="col">&nbsp;</th>
+      <th colspan="2" align="center" scope="col">&nbsp;</th>
+    </tr>
+    <tr>
+      <td align="center" class="style32">&nbsp;</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Preface_ODEweb.html">Preface</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32">1</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec01X/L01X.xht">Examples and Previews</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">2</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec02X/L02X.xht">First-Order  ODEs - Solutions &amp; Their Properties</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">3</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec03X/L03X.xht">First Order Separable &amp; Exact ODEs</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">4</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec04X/L04X.xht">First Order Linear ODEs and Extensions</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">5</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec05X/L05X.xht">Visualization Tools for Solutions to First Order ODEs</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">6</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec06X/L06X.xht">Solutions to Linear First-Order ODEs with Piecewise Inputs</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">7</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec07X/L07X.xht">Approximation Tools for  1st-Order ODEs</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">8</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec08X/L08X.xht">Existence &amp; Uniqueness for 1st-Order ODEs</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">9</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec09X/L09X.xht">Extendibility, &amp; Dependence for 1st-Order ODEs</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">10</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec10X/L10X.xht">Qualitative tools for First-Order ODEs</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">11</td>
+      <td colspan="2" align="left" class="style42" scope="col"><a target="_blank" href="Lectures/Lec11X/L11X.xht">Linear Homogeneous Second-Order ODEs with Constant Coefficients I</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">12</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec12X/L12X.xht">Linear Homogeneous Second-Order ODEs with Constant Coefficients II</a></span></td>
+    </tr>
+    <tr>
+      <td height="23" align="center" class="style32" scope="col">13</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec13X/L13X.xht">Linear Homogeneous Second-Order ODES with Non-Constant Coefficients</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">14</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec14X/L14X.xht">Linear Nonhomogeneous  Second-Order Constant Coefficient  ODEs I - General Solution, UC Method</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">15</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec15X/L15X.xht">Linear Nonhomogeneous Second-Order Constant Coefficient ODEs II -The Operator Method</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">16</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec16X/L16X.xht">Linear Nonhomogeneous Second-Order Constant Coefficient ODEs III - VP Method, Green's Kernel</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">17</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec17X/L17X.xht">Green's Kernel &amp; Convolution for Linear ODEs with Constant Coefficients</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">18</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec18X/L18X.xht">Green's Operator, The Dirac Delta, &amp; Impulse Response</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">19</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec19X/L19X.xht">Introduction to Laplace Transforms</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">20</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec20X/L20X.xht">Operational Properties of Laplace Transforms</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">21</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec21X/L21X.xht">Solution of Linear IVPs by Laplace Transforms</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">22</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec22X/L22X.xht">Visualization &amp; Numerical Approximation Tools for Solutions to Linear Homogeneous 2nd-Order ODEs</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">23</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec23X/L23X.xht">Linear Systems - Examples &amp; Theory</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">24</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec24X/L24X.xht">Solution by Eigenvectors</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">25</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec25X/L25X.xht">Phase Portraits of Two-Dimensional Systems</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">26</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Lec26X/L26X.xht">Nonlinear Systems - Equilibrium Solutions</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">27</td>
+      <td colspan="2" align="left" class="style32" scope="col"><span class="style42"><a target="_blank" href="Lectures/Lec27X/L27X.xht">Nonlinear Systems - Periodic Solutions</a></span></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32">&nbsp;</td>
+      <td colspan="2" align="left" class="style32" scope="col">Appendix</td>
+    </tr>
+    <tr>
+      <td align="center" class="style32">A</td>
+      <td width="34" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Appendix/Lec00A/L00A.xht"></a></td>
+      <td width="691" align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Appendix/Lec00A/L00A.xht">Linear Algebra Review for ODEs</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32">B</td>
+      <td align="left" class="style32" scope="col">&nbsp;</td>
+      <td align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Appendix/Lec00B/L00B.xht">Complex Numbers &amp; Functions</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">C</td>
+      <td align="left" class="style32" scope="col">&nbsp;</td>
+      <td align="left" class="style32" scope="col"><a target="_blank" href="Lectures/Appendix/Lec00C/L00C.xht">Partial Fractions Review</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">&nbsp;</td>
+      <td colspan="2" align="left" class="style32" scope="col">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">&nbsp;</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Index_ODEweb.html">Index</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">&nbsp;</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Bibliography_ODEweb.html">Biblipgraphy</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">&nbsp;</td>
+      <td colspan="2" align="left" class="style32" scope="col"><a target="_blank" href="Credits.xht">Credits</a></td>
+    </tr>
+    <tr>
+      <td align="center" class="style32" scope="col">&nbsp;</td>
+      <td colspan="2" align="left" class="style32" scope="col">&nbsp;</td>
+    </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+<div id="Layer2"></div>
+<div id="Layer3">
+  <table width="190" height="309" border="0" cellspacing="0" bordercolor="#006600" bgcolor="#006600">
+    <tr>
+      <td width="174" height="34" bgcolor="#006600" class="style8"><a target="_blank" href="Home_ODEweb.html" class="style31">ODEweb Home</a></td>
+    </tr>
+    <tr>
+      <td height="32" bgcolor="#006600" class="style31"><a href="Lectures_ODEweb.html" class="style31"></a><a target="_blank" href="Preface_ODEweb.html" class="style31">Preface</a></td>
+    </tr>
+    <tr>
+      <td height="31" bgcolor="#006600" class="style16"><a target="_blank" href="Index_ODEweb.html" class="style31">Index</a></td>
+    </tr>
+    <tr>
+      <td height="31" bgcolor="#006600" class="style16"><a href="Lectures_ODEweb.html" class="style31">Lectures</a><a href="Exercises_ODEweb.html" class="style31"></a></td>
+    </tr>
+    <tr>
+      <td height="30" bgcolor="#006600" class="style16"><a target="_blank" href="Exercises_ODEweb.html" class="style31">Exercises</a></td>
+    </tr>
+    <tr>
+      <td height="29" bgcolor="#006600" class="style16"><a target="_blank" href="Links_ODEweb.html" class="style31">Links </a><a target="_blank" href="Resources_ODEweb.html" class="style31"></a></td>
+    </tr>
+    <tr>
+      <td height="30" bgcolor="#006600" class="style16"><a target="_blank" href="Resources_ODEweb.html" class="style31">Resources</a><a target="_blank" href="Notes_ODEweb.html" class="style31"></a></td>
+    </tr>
+    <tr>
+      <td height="29" bgcolor="#006600" class="style16"><a target="_blank" href="NavHints_ODEweb.html" class="style31">Navigation Hints</a></td>
+    </tr>
+  </table>
+</div>
+<p>&nbsp;</p>
+<table width="985" border="0">
+  <tr>
+    <td width="200" rowspan="3"><a target="_blank" href="http://www.gmu.edu/"><img src="Images/gmulogo.gif" alt="George Mason University" width="200" height="113" border="0" /></a></td>
+    <td width="618" rowspan="3"><h2 align="center" class="style32"><span class="style32">Interacting with Ordinary  Differential Equations</span><br />
+      </h2></td>
+    <td width="153" height="34" bgcolor="#FFFFFF" class="style33">&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td bgcolor="#FFFFFF" class="style33">&nbsp;</td>
+  </tr>
+</table>
+<p align="left" class="style1">&nbsp; </p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="left" class="style1">&nbsp;</p>
+<p align="center" class="style18">&nbsp;</p>
+</body>
+<!-- InstanceEnd --></html>

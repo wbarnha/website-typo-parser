@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+"http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:mml="http://www.w3.org/1998/Math/MathML">
+<head>
+<link rel="icon" type="image/png" href="./xoverdot.png"/>
+<!-- The next lines of text are copied from the file htmlout.cfg, and can be modified there -->
+<style type="text/css">
+.displayed {text-align: center}
+.displayed { display: block !
+important}
+span.leadin {float: left}
+span.vspace {vertical-align: top}
+span.rule {display: inline; background-color: black}
+span.inline-math-graphics {white-space: nowrap}
+hr.pagebreak {color: green}
+table {border-collapse: collapse; border-color: black}
+table td {border-color: black}
+.inlineTable {display: inline}
+
+
+
+</style>
+<!-- End of lines from htmlout.cfg -->
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=MML_CHTML'></script>
+
+<link href="L02X.css" rel="stylesheet" type="text/css"/>
+<meta name="CREATED" content="Sunday, August 07, 2005 17:39:44"/>
+<meta name="REVISED" content="Monday, January 21, 2019 07:15:37"/>
+<meta name="GENERATOR" content="Scientific Word"/>
+<title>L02X.xht</title>
+</head>
+<body >
+<h1 class="part">INTERACTING with ORDINARY DIFFERENTIAL EQUATIONS</h1>
+<p class="center">
+   <br/><br/>
+</p>
+<h1 class="part"><span class="huge2">Lecture 2</span></h1>
+<h1 class="part"><br/><span class="QQQHUGE">First-Order ODEs - Solutions
+&amp; Their Properties</span></h1>
+<p>
+   <br/>
+</p>
+<p class="center">
+   <br/>(Revised 	February 29, 2020 @ 1210<br/><br/>
+</p>
+<p class="center">
+   Stephen H Saperstone
+</p>
+<p class="center">
+   Department of Mathematical Sciences
+</p>
+<p class="center">
+   George Mason University
+</p>
+<p class="center">
+   Fairfax, VA 22030
+</p>
+<p class="center">
+   <br/>
+</p>
+<p class="center">
+   email: sap at gmu dot edu
+</p>
+<p class="center">
+   <br/>
+</p>
+<p class="center">
+</p>
+<p class="center">
+   <br/><hr class="hrulefill" />
+</p>
+<p class="center">
+   <br/>
+</p>
+<p>
+   In this lecture we explore some basic properties of solutions to first-order
+   ODEs. Generally, what we mean by a solution to an ODE is a formula that
+   enables us to compute values of the unknown function that is characterized by
+   the ODE and plot that function as well. Solutions come in a variety of
+   flavors: the primary ones are (1) explicit solutions, (2) implicit solutions,
+   and (3) approximate solutions. The first two are introduced in this lecture;
+   approximate solutions are introduced in Lecture 7. Many examples are used to
+   illustrate the properties of the first two types of solutions.
+</p>
+<p>
+   <br/>
+</p>
+<p class="QQQSpecialText">
+   <hr class="hrulefill" />
+</p>
+<p>
+   <br/><br/><br/><a id="InitialCondition"></a>
+</p>
+<p class="QQQSubHead1">
+   2.1 INITIAL CONDITIONS
+</p>
+<p>
+   <br/>The solutions to many of the preceding examples contain an arbitrary
+   constant or constants. In the solution to a first-order ODE, the constant is
+   represented by the symbol
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>c</mml:mi>
+       <mml:mo form="postfix">;</mml:mo>
+     </mml:mrow>
+   </mml:math>
+   in the solution to a second order ODE, the constants are represented by the
+   symbols
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:msub>
+         <mml:mi>c</mml:mi>
+         <mml:mn>1</mml:mn>
+       </mml:msub>
+     </mml:mrow>
+   </mml:math>
+   and
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:msub>
+         <mml:mi>c</mml:mi>
+         <mml:mn>2</mml:mn>
+       </mml:msub>
+       <mml:mtext>.</mml:mtext>
+     </mml:mrow>
+   </mml:math>
+   Where do these constants come from? Consider the case of a first-order ODE
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mrow>
+         <mml:mover accent="true">
+           <mml:mi>x</mml:mi>
+           <mml:mo form="postfix" accent="true">&dot;</mml:mo>
+         </mml:mover>
+         <mml:mo form="infix">=</mml:mo>
+         <mml:mrow>
+           <mml:mi>f</mml:mi>
+           <mml:mo>&ApplyFunction;</mml:mo>
+           <mml:mrow>
+             <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+             <mml:mrow>
+               <mml:mi>t</mml:mi>
+               <mml:mo form="infix">,</mml:mo>
+               <mml:mi>x</mml:mi>
+             </mml:mrow>
+             <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+           </mml:mrow>
+         </mml:mrow>
+       </mml:mrow>
+       <mml:mtext>.</mml:mtext>
+     </mml:mrow>
+   </mml:math>
+   You can think of a solution
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>x</mml:mi>
+       <mml:mo form="infix">=</mml:mo>
+       <mml:mrow>
+         <mml:mi>x</mml:mi>
+         <mml:mo>&ApplyFunction;</mml:mo>
+         <mml:mrow>
+           <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+           <mml:mi>t</mml:mi>
+           <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+         </mml:mrow>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:math>
+   as the result of integrating the ODE. In the case of an explicit solution the
+   substitution of
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>x</mml:mi>
+       <mml:mo form="infix">=</mml:mo>
+       <mml:mrow>
+         <mml:mi>x</mml:mi>
+         <mml:mo>&ApplyFunction;</mml:mo>
+         <mml:mrow>
+           <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+           <mml:mi>t</mml:mi>
+           <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+         </mml:mrow>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:math>
+   and its derivative
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mover accent="true">
+         <mml:mi>x</mml:mi>
+         <mml:mo form="postfix" accent="true">&dot;</mml:mo>
+       </mml:mover>
+       <mml:mo form="infix">=</mml:mo>
+       <mml:mrow>
+         <mml:mi>d</mml:mi>
+         <mml:mtext>&ZeroWidthSpace;</mml:mtext>
+         <mml:mo>&InvisibleTimes;</mml:mo>
+         <mml:mrow>
+           <mml:mrow>
+             <mml:mi>x</mml:mi>
+             <mml:mo>&ApplyFunction;</mml:mo>
+             <mml:mrow>
+               <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+               <mml:mi>t</mml:mi>
+               <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+             </mml:mrow>
+           </mml:mrow>
+           <mml:mo form="infix">/</mml:mo>
+           <mml:mi>d</mml:mi>
+         </mml:mrow>
+         <mml:mtext>&ZeroWidthSpace;</mml:mtext>
+         <mml:mo>&InvisibleTimes;</mml:mo>
+         <mml:mi>t</mml:mi>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:math>
+   into
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mover accent="true">
+         <mml:mi>x</mml:mi>
+         <mml:mo form="postfix" accent="true">&dot;</mml:mo>
+       </mml:mover>
+       <mml:mo form="infix">=</mml:mo>
+       <mml:mrow>
+         <mml:mi>f</mml:mi>
+         <mml:mo>&ApplyFunction;</mml:mo>
+         <mml:mrow>
+           <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+           <mml:mrow>
+             <mml:mi>t</mml:mi>
+             <mml:mo form="infix">,</mml:mo>
+             <mml:mi>x</mml:mi>
+           </mml:mrow>
+           <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+         </mml:mrow>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:math>
+   must yield an identity in
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>t</mml:mi>
+       <mml:mtext>.</mml:mtext>
+     </mml:mrow>
+   </mml:math>
+   Consequently, it is reasonable that
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>x</mml:mi>
+       <mml:mo>&ApplyFunction;</mml:mo>
+       <mml:mrow>
+         <mml:mo form="prefix" fence="true" stretchy="true" symmetric="true">(</mml:mo>
+         <mml:mi>t</mml:mi>
+         <mml:mo form="postfix" fence="true" stretchy="true" symmetric="true">)</mml:mo>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:math>
+   must be the result of integration of the ODE with respect to
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>t</mml:mi>
+       <mml:mtext>.</mml:mtext>
+     </mml:mrow>
+   </mml:math>
+   It follows that we should expect a constant of integration from that process.
+   Similar reasoning suggests that there should be two arbitrary constants of
+   integration for a solution of a second-order ODE.
+</p>
+<p>
+   No effort is made in this section to solve any ODEs. Instead, the goal is to
+   demonstrate the role and significance of these arbitrary constants. Solution
+   methods are deferred to later lectures.
+</p>
+<br/><br/>
+<p>
+   <hr class="hrulefill" />
+</p>
+<div class="example">
+   <span class="leadin">Example</span><p class="example-FirstPara">
+      2.1 [Radioactive Decay]:<a id="Example02.01"></a>
+   </p>
+</div>
+<p class="QQQExampleText">
+   <br/>
+</p>
+<p class="QQQExampleText">
+   Consider Example 1.6, the ODE for
+   <span class="QQQHyperLink-BodyText"><a target="_blank" href="..\Lec01X/L01X.xht#Example01.06"> <span class="QQQHyperLink-BodyText">radioactive
+   decay</span></a></span>
+   <mml:math mode="display" display="block">
+     <mml:mrow>
+       <mml:mrow>
+         <mml:mover accent="true">
+           <mml:mi>x</mml:mi>
+           <mml:mo form="postfix" accent="true">&dot;</mml:mo>
+         </mml:mover>
+         <mml:mo form="infix">=</mml:mo>
+         <mml:mrow>
+           <mml:mrow>
+             <mml:mo form="prefix">&minus;</mml:mo>
+             <mml:mi>r</mml:mi>
+           </mml:mrow>
+           <mml:mo>&InvisibleTimes;</mml:mo>
+           <mml:mi>x</mml:mi>
+         </mml:mrow>
+       </mml:mrow>
+       <mml:mo form="infix">,</mml:mo>
+       <mml:mtext>&emsp;</mml:mtext>
+       <mml:mrow>
+         <mml:mi>r</mml:mi>
+         <mml:mo form="infix">></mml:mo>
+         <mml:mn>0</mml:mn>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:math>We
+   verified there that
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mrow>
+         <mml:mstyle mathsize="2.40ex">
+           <mml:mi>x</mml:mi>
+         </mml:mstyle>
+       </mml:mrow>
+       <mml:mrow>
+         <mml:mstyle mathsize="2.40ex">
+           <mml:mo form="infix">=</mml:mo>
+         </mml:mstyle>
+       </mml:mrow>
+       <mml:mrow>
+         <mml:mrow>
+           <mml:mstyle mathsize="2.40ex">
+             <mml:mi>c</mml:mi>
+           </mml:mstyle>
+         </mml:mrow>
+         <mml:mo>&InvisibleTimes;</mml:mo>
+         <mml:msup>
+           <mml:mrow>
+             <mml:mstyle mathsize="2.40ex">
+               <mml:mi>e</mml:mi>
+             </mml:mstyle>
+           </mml:mrow>
+           <mml:mrow>
+             <mml:mstyle mathsize="2.40ex">
+               <mml:mrow>
+                 <mml:mo form="prefix">&minus;</mml:mo>
+                 <mml:mi>r</mml:mi>
+               </mml:mrow>
+               <mml:mo>&InvisibleTimes;</mml:mo>
+               <mml:mi>t</mml:mi>
+             </mml:mstyle>
+           </mml:mrow>
+         </mml:msup>
+       </mml:mrow>
+     </mml:mrow>
+   </mml:math>
+   is a solution. (To be realistic, we could set
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>r</mml:mi>
+       <mml:mo form="infix">&approx;</mml:mo>
+       <mml:mn>0.028</mml:mn>
+     </mml:mrow>
+   </mml:math>
+   yr<mml:math display="inline">
+     <mml:mrow>
+       <mml:msup>
+         <mml:mspace width="veryverythinmathspace" />
+         <mml:mrow>
+           <mml:mo form="prefix">&minus;</mml:mo>
+           <mml:mn>1</mml:mn>
+         </mml:mrow>
+       </mml:msup>
+       <mml:mtext>,</mml:mtext>
+     </mml:mrow>
+   </mml:math>
+   the decay constant for Strontium 90.) But even having a fixed a value of
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>r</mml:mi>
+       <mml:mtext>,</mml:mtext>
+     </mml:mrow>
+   </mml:math>
+   the solution
+</p>
+<p class="QQQExampleText">
+   <br/>
+</p>
+<p class="QQQExampleText">
+   <mml:math mode="display" display="block">
+     <mtable side='left' displaystyle="true">
+     <mlabeledtr>
+      <mtd><mtext>(2.1)</mtext></mtd>
+       <mml:mrow>
+         <mml:mrow>
+           <mml:mstyle mathsize="2.40ex">
+             <mml:mi>x</mml:mi>
+           </mml:mstyle>
+         </mml:mrow>
+         <mml:mrow>
+           <mml:mstyle mathsize="2.40ex">
+             <mml:mo form="infix">=</mml:mo>
+           </mml:mstyle>
+         </mml:mrow>
+         <mml:mrow>
+           <mml:mrow>
+             <mml:mstyle mathsize="2.40ex">
+               <mml:mi>c</mml:mi>
+             </mml:mstyle>
+           </mml:mrow>
+           <mml:mo>&InvisibleTimes;</mml:mo>
+           <mml:msup>
+             <mml:mrow>
+               <mml:mstyle mathsize="2.40ex">
+                 <mml:mi>e</mml:mi>
+               </mml:mstyle>
+             </mml:mrow>
+             <mml:mrow>
+               <mml:mstyle mathsize="2.40ex">
+                 <mml:mrow>
+                   <mml:mo form="prefix">&minus;</mml:mo>
+                   <mml:mi>r</mml:mi>
+                 </mml:mrow>
+                 <mml:mo>&InvisibleTimes;</mml:mo>
+                 <mml:mi>t</mml:mi>
+               </mml:mstyle>
+             </mml:mrow>
+           </mml:msup>
+         </mml:mrow>
+       </mml:mrow>
+	   
+</mlabeledtr>
+	</mtable>
+	
+   </mml:math>
+</p>
+<p class="QQQExampleText">
+   <br/>
+</p>
+<p class="QQQExampleText">
+   still depends on the value of
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>c</mml:mi>
+       <mml:mtext>.</mml:mtext>
+     </mml:mrow>
+   </mml:math>
+   Indeed, we cannot even plot a solution unless we assign a numerical value to
+   <mml:math display="inline">
+     <mml:mrow>
+       <mml:mi>c</mml:mi>
