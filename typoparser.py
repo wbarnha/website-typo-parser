@@ -3,6 +3,10 @@ from enchant.checker import SpellChecker
 import os
 import enchant
 import sys
+import wget
+import shutil
+import requests
+from urlparse import urlparse
 from PySide2.QtWidgets import QApplication
 from PySide2.QtWidgets import QGridLayout
 from PySide2.QtWidgets import QPushButton
@@ -16,25 +20,14 @@ from PySide2.QtWidgets import QSizePolicy
 from PySide2.QtCore import Slot, Qt
 
 ###### THIS PROGRAM IS DESIGNED TO RUN ON UNIX AND UNIX-LIKE SYSTEMS WITH PYTHON 2 ######
-#For those who want further details, Python 3 is very poor for processing information from the
-#internet at the moment. There are plenty of resources available in Python 2 to get the job done.
-#Additionally, some features require features from UNIX in order to gain the full potential of this
-#program.
+#Some components require features from UNIX in order to gain full functionality of this program.
 
-path = "math.cos.gmu.edu/~sap/ode/index.html" #This may have to be configured by the end-user
-username=""
-password=""
-
-os.system("bash -c 'rm -rf ~/%s'" % path)
-os.system("bash -c 'wget -rL -R jpg,gif,png,pdf,mp4,css --http-password=%s --http-user=%s %s'" % (password,username,path))
-
-#Since there are missing words from the native dictionary, they have to be manually added
-#TODO: Consult statistician to determine how to go about evaluating typo probability to increase versatility
-#TODO: Implement typo probability determination
+#Since there are missing words from the local dictionary, they have to be manually added
 dictionary = enchant.Dict("en_US") #Declares dictionary and assigns to a variable
 new_words = []
 displaytext = []
 
+##TODO: Add a button for adding words to the dictionary by allowing for the textbox to be edited and read
 #Add a word to the list in order to update the dictionary.
 
 for word in new_words:
@@ -65,10 +58,8 @@ class MyHTMLParser(HTMLParser): #THIS ONLY WORKS IN PYTHON 2
             if len(dictionary.suggest(misspell.word)) > 0: #This is a way of removing gibberish    
                 print("Misspelled: "+str(misspell.word)) #For displaying errors to terminal
                 print("Suggestions: "+str(dictionary.suggest(misspell.word))+"\n")
-                displaytext.append("Misspelled: "+str(misspell.word)+"\n") #For displaying errors to terminal
+                displaytext.append("\nMisspelled: "+str(misspell.word)+"\n") #For displaying errors to terminal
                 displaytext.append("Suggestions: "+str(dictionary.suggest(misspell.word))+"\n")
-                #report.write("Misspelled: "+str(misspell.word)+"\n") #For displaying errors to text file
-                #report.write("Suggestions: "+str(dictionary.suggest(misspell.word))+"\n\n")
                 spell_errors += 1
         if "." in data and data.isdigit() == False: #General case for a word with a period at the end or enumeration
             if len(data) > 2: #Used in case of individual letter listing
@@ -81,13 +72,9 @@ class MyHTMLParser(HTMLParser): #THIS ONLY WORKS IN PYTHON 2
                 if attrs[0][0] == "class":
                     if attrs[0][1] == "example-FirstPara":
                         part += 1
-                        #print("## With reference from the beginning of Example %d ##\n" % (part))
-                        #report.write("## With reference from the beginning of Example %d ##\n" % (part))
                         period = 1
                     if attrs[0][1] == "SubHead1":
                         section += 1
-                        #print("## With reference from the beginning of Section %d ##\n" % (section))
-                        #report.write("## With reference from the beginning of Section %d ##\n" % (section))
                         period = 1
         if tag == "ol":
             ques += letter 
@@ -97,8 +84,6 @@ class MyHTMLParser(HTMLParser): #THIS ONLY WORKS IN PYTHON 2
             letter = 1
 
 #TODO: Update QLabel ability to display text and continually update
-#TODO: Interface GUI with username and password
-#TODO: Interface URL with GUI
 #TODO: Remove os.system usage and replace with Python methods for portability
 class TypoWidget(QWidget):
     def __init__(self):
@@ -108,27 +93,28 @@ class TypoWidget(QWidget):
         self.text = QTextEdit("")
         self.clear = QPushButton("Clear")
         self.save = QPushButton("Save")
+        self.update = QPushButton("Add to Dictionary")
         self.run = QPushButton("Run")
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        self.text.setSizePolicy(QSizePolicy.Maximum,QSizePolicy.Maximum)
+        self.url = QLineEdit("math.cos.gmu.edu/~sap/ode/index.html")
+        self.user = QLineEdit("")
+        self.password = QLineEdit("")
         self.text.setSizePolicy(QSizePolicy.Ignored,QSizePolicy.Ignored)
-        self.text.setReadOnly(True)
-
-        self.layout.addWidget(QLineEdit(), 0, 1, 1, 3)
+        self.text.setReadOnly(False)
+        self.layout.addWidget(self.url, 0, 1, 1, 3)
         self.layout.addWidget(QLabel("URL:"), 0,0)
-        self.layout.addWidget(QLineEdit(), 1, 1,)
+        self.layout.addWidget(self.user, 1, 1)
         self.layout.addWidget(QLabel("Username:"), 1,0)
-        self.layout.addWidget(QLineEdit(), 1, 3,)
+        self.layout.addWidget(self.password, 1, 3)
         self.layout.addWidget(QLabel("Password:"), 1,2)
         self.layout.addWidget(self.run,2,0)
         self.layout.addWidget(self.save,2,1,1,1)
         self.layout.addWidget(self.clear,2,2)
-
+        self.layout.addWidget(self.update,2,3,1,1)
         self.layout.addWidget(self.text,3,0,4,4)
-
         self.clear.clicked.connect(self.cleartext)
         self.save.clicked.connect(self.savefile)
         self.run.clicked.connect(self.parse)
+        self.update.clicked.connect(self.update_dict)
 
     @Slot()
     def savefile(self):
@@ -140,22 +126,29 @@ class TypoWidget(QWidget):
     def cleartext(self):
         self.text.clear()
 
+    #Since there are missing words from the local dictionary, they have to be manually added
+    @Slot()
+    def update_dict(self):
+        new_words = self.text.toPlainText()
+        for word in new_words.split():
+            dictionary.add(str(word))
+
     @Slot()
     def parse(self):
-        path = "math.cos.gmu.edu/" #This may have to be configured by the end-user
+        url = self.url.text()
+        username = self.user.text()
+        password = self.password.text()
+        path = os.path.dirname(urlparse(url).path)
+        if path in os.path.dirname(os.path.realpath(__file__)):
+            shutil.rmtree(path)
+        os.system("bash -c 'wget -rL -R jpg,gif,png,pdf,mp4,css --http-password=%s --http-user=%s %s'" % (password,username,url))
         #TODO: Set up program to ease file location search
         parser = MyHTMLParser() #Required to be declared in order to feed data, does not work in Python 3
-
-        #Iterates over contents of Saperstone's folders downloaded from Math Department
-        #If desired, it could look over the entire department... 
-        #TODO: ADD GRAMMAR CHECKING
-        #TODO: ADD MATH CHECKING
         formats = "xhthtmlhtm" #Used for storing suffixes of file types
         for tuples in os.walk(path): #Identifies potential typos
             for contents in tuples[2]: #This loop iterates over every single file in a directory, add functions below
                 if "xht" in contents[-6:]:# or "htm" in contents[-6:]: #Controls type of files read (HTML and its derivatives only), comment this out to go crazy
-                    displaytext.append("########## "+path+tuples[0].replace(path,"")+"/"+str(contents)+" ##########\n") #Provides a header for each section
-                    #report.write("########## "+path+tuples[0].replace(path,"")+"/"+str(contents)+" ##########\n") #Provides a header file
+                    displaytext.append("\n########## "+path+tuples[0].replace(path,"")+"/"+str(contents)+" ##########\n") #Provides a header for each section
                     f = open(tuples[0]+"/"+contents,"r")
                     info = f.read()
                     displaytext.append(parser.feed(info))
@@ -165,17 +158,11 @@ class TypoWidget(QWidget):
                 period = 1
                 ques = 1
                 letter = 1
-                temporary = [] #Resets list to empty contents and save memory...
+                temporary = [] #Resets list
 
-                #print(str(displaytext))
-                print(''.join([str(t) for t in displaytext if t is not None]))
-                self.text.setText(''.join([str(t) for t in displaytext if t is not None]))
-                print("\nThere are currently %d non-native items in the dictionary." % (len(new_words)))
-                #This section is reserved for printing the number of errors by type
-                print("\n%d spelling errors detected.\n" % (spell_errors))
-#                self.text.setText("\nThere are currently %d non-native items in the dictionary." % (len(new_words)))
-                #This section is reserved for printing the number of errors by type
-#                self.text.setText("\n%d spelling errors detected.\n" % (spell_errors))
+            displaytext.append("\n%d spelling errors detected.\n" % (spell_errors))
+        displaytext.append("\nThere are currently %d locally-added items in the dictionary." % (len(new_words)))
+        self.text.setText(''.join([str(t) for t in displaytext if t is not None]))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
