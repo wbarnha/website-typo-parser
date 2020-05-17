@@ -17,6 +17,7 @@ from PySide2.QtWidgets import QLabel
 from PySide2.QtWidgets import QScrollArea
 from PySide2.QtWidgets import QFileDialog
 from PySide2.QtWidgets import QSizePolicy
+from PySide2.QtWidgets import QProgressBar
 from PySide2.QtCore import Slot, Qt
 
 ###### THIS PROGRAM IS DESIGNED TO RUN ON UNIX AND UNIX-LIKE SYSTEMS WITH PYTHON 2 ######
@@ -56,8 +57,8 @@ class MyHTMLParser(HTMLParser): #THIS ONLY WORKS IN PYTHON 2
         for misspell in lang: #Searches for possible spelling errors
             global spell_errors,report,section,part
             if len(dictionary.suggest(misspell.word)) > 0: #This is a way of removing gibberish    
-                print("Misspelled: "+str(misspell.word)) #For displaying errors to terminal
-                print("Suggestions: "+str(dictionary.suggest(misspell.word))+"\n")
+                #print("Misspelled: "+str(misspell.word)) #For displaying errors to terminal
+                #print("Suggestions: "+str(dictionary.suggest(misspell.word))+"\n")
                 displaytext.append("\nMisspelled: "+str(misspell.word)+"\n") #For displaying errors to terminal
                 displaytext.append("Suggestions: "+str(dictionary.suggest(misspell.word))+"\n")
                 spell_errors += 1
@@ -95,6 +96,9 @@ class TypoWidget(QWidget):
         self.save = QPushButton("Save")
         self.update = QPushButton("Add to Dictionary")
         self.run = QPushButton("Run")
+        self.run.setCheckable(True)
+        self.progress = QProgressBar(self)
+        self.progress.setValue(0)
         self.url = QLineEdit("math.cos.gmu.edu/~sap/ode/index.html")
         self.user = QLineEdit("")
         self.password = QLineEdit("")
@@ -110,7 +114,8 @@ class TypoWidget(QWidget):
         self.layout.addWidget(self.save,2,1,1,1)
         self.layout.addWidget(self.clear,2,2)
         self.layout.addWidget(self.update,2,3,1,1)
-        self.layout.addWidget(self.text,3,0,4,4)
+        self.layout.addWidget(self.progress,3,0,1,4)
+        self.layout.addWidget(self.text,4,0,4,4)
         self.clear.clicked.connect(self.cleartext)
         self.save.clicked.connect(self.savefile)
         self.run.clicked.connect(self.parse)
@@ -125,6 +130,7 @@ class TypoWidget(QWidget):
     @Slot()
     def cleartext(self):
         self.text.clear()
+        self.progress.setValue(0)
 
     #Since there are missing words from the local dictionary, they have to be manually added
     @Slot()
@@ -135,34 +141,52 @@ class TypoWidget(QWidget):
 
     @Slot()
     def parse(self):
+        self.progress.setValue(0)
         url = self.url.text()
         username = self.user.text()
         password = self.password.text()
         path = os.path.dirname(urlparse(url).path)
         if path in os.path.dirname(os.path.realpath(__file__)):
             shutil.rmtree(path)
+        #if not(self.run.isChecked()):
         os.system("bash -c 'wget -rL -R jpg,gif,png,pdf,mp4,css --http-password=%s --http-user=%s %s'" % (password,username,url))
+        #self.run.setChecked(True)
+        #TODO: Get rid of wget
         #TODO: Set up program to ease file location search
         parser = MyHTMLParser() #Required to be declared in order to feed data, does not work in Python 3
         formats = "xhthtmlhtm" #Used for storing suffixes of file types
+        dirsize = 0
+        xhtfiles = 0
+        for p, d, files in os.walk(os.getcwd()):
+            for filename in files:
+                if filename.endswith(".xht"):
+                    xhtfiles += 1
+                    dirsize += os.path.getsize(p+os.sep+filename)
         for tuples in os.walk(path): #Identifies potential typos
-            for contents in tuples[2]: #This loop iterates over every single file in a directory, add functions below
-                if "xht" in contents[-6:]:# or "htm" in contents[-6:]: #Controls type of files read (HTML and its derivatives only), comment this out to go crazy
-                    displaytext.append("\n########## "+path+tuples[0].replace(path,"")+"/"+str(contents)+" ##########\n") #Provides a header for each section
-                    f = open(tuples[0]+"/"+contents,"r")
-                    info = f.read()
-                    displaytext.append(parser.feed(info))
-                    self.text.setText(''.join([str(t) for t in displaytext if t is not None]))
-                part = 0
-                section = 0
-                period = 1
-                ques = 1
-                letter = 1
-                temporary = [] #Resets list
+            if self.run.isChecked():
+                for contents in tuples[2]: #This loop iterates over every single file in a directory, add functions below
+                    if "xht" in contents[-6:]:# or "htm" in contents[-6:]: #Controls type of files read (HTML and its derivatives only), comment this out to go crazy
+                        displaytext.append("\n########## "+path+tuples[0].replace(path,"")+os.sep+str(contents)+" ##########\n") #Provides a header for each section
+                        self.text.setText(''.join([str(t) for t in displaytext if t is not None]))
+                        f = open(tuples[0]+os.sep+contents,"r")
+                        info = f.read()
+                        displaytext.append(parser.feed(info))
+                        self.text.setText(''.join([str(t) for t in displaytext if t is not None]))
+                        self.progress.setValue(int(100*((self.progress.value())/100.0+(1/(1.0*xhtfiles)))))
+                    part = 0
+                    section = 0
+                    period = 1
+                    ques = 1
+                    letter = 1
+                    temporary = [] #Resets list
+            else:
+                break
 
             displaytext.append("\n%d spelling errors detected.\n" % (spell_errors))
         displaytext.append("\nThere are currently %d locally-added items in the dictionary." % (len(new_words)))
         self.text.setText(''.join([str(t) for t in displaytext if t is not None]))
+        self.run.setChecked(False)
+        self.progress.setValue(100)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
